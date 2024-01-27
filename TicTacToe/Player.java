@@ -1,13 +1,24 @@
 import java.util.Random;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
 
-class Player {
+public class Player {
+    String playerName = "";
     char playerSymbol = ' ';
+
+    public void setName(String newName) {
+        this.playerName = newName;
+    }
+
+    public String getName() {
+        return this.playerName;
+    }
 
     public void setSymbol(char newSymbol) {
         this.playerSymbol = newSymbol;
+    }
+
+    public char getSymbol() {
+        return this.playerSymbol;
     }
 
     public int chooseCell() throws IOException {
@@ -15,20 +26,4 @@ class Player {
         Random rand = new Random();
         return (rand.nextInt(8));
     }
-}
-
-class Human extends Player {
-    BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-
-    @Override
-    public int chooseCell() throws IOException {
-        System.out.print("Enter your cell in x,y format: ");
-        String coordinates = this.consoleReader.readLine();
-
-        return 0;
-    }
-}
-
-class AI extends Player {
-
 }

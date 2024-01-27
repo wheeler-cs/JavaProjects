@@ -1,9 +1,21 @@
+import java.io.IOException;
+
 public class GameRun {
     public static void main(String[] args) {
+        // Initialize new game state
         GameBoard gameState = new GameBoard();
         gameState.resetBoard();
-        for (int i = 0; i < 9; i++)
-            gameState.setCell(i % 3, i/3, 'X');
+
+        Human testHuman = new Human();
+        testHuman.setSymbol('A');
+        try {
+            int flattenedCell = testHuman.chooseCell();
+            gameState.setCell(flattenedCell, testHuman.getSymbol());
+        }
+        catch (IOException e) {
+            System.out.println("Couldn't read player input...");
+        }
+        // Print board for player
         gameState.printBoard();
     }
 }

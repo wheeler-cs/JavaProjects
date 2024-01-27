@@ -8,17 +8,14 @@ public class GameBoard {
         this.currentTurn = 0;
     }
 
-    public boolean setCell(int x, int y, char symbol) {
+    public boolean setCell(int cellIndex, char symbol) {
         // Convert the 2-D cell to corresponding 1-D cell
-        int flattenedIndex = (x + (y * 3));
         // Only set if empty
-        if(this.board[flattenedIndex] == ' ')
-        {
-            this.board[flattenedIndex] = symbol;
+        if(this.board[cellIndex] == ' ') {
+            this.board[cellIndex] = symbol;
             ++this.currentTurn;
         }
-        else
-        {
+        else {
             return false;
         }
 
@@ -31,10 +28,17 @@ public class GameBoard {
 
     public void printBoard() {
         for(int i = 0; i < 9; i++) {
-            if(i % 3 == 2)
-                System.out.println(this.board[i]);
+            if(i % 3 == 2) {
+                if(this.board[i] == ' ')
+                    System.out.println('_');
+                else
+                    System.out.println(this.board[i]);
+            }
             else {
-                System.out.print(this.board[i]);
+                if(this.board[i] == ' ')
+                    System.out.print('_');
+                else
+                    System.out.print(this.board[i]);
                 System.out.print(' ');
             }
         }
