@@ -7,14 +7,16 @@ public class GameRun {
         gameState.resetBoard();
 
         Human testHuman = new Human();
-        testHuman.setSymbol('A');
-        try {
-            int flattenedCell = testHuman.chooseCell();
-            gameState.setCell(flattenedCell, testHuman.getSymbol());
-        }
-        catch (IOException e) {
-            System.out.println("Couldn't read player input...");
-        }
+        testHuman.setValue(1);
+
+        gameState.setCell(0, testHuman);
+        gameState.setCell(1, testHuman);
+        gameState.setCell(2, testHuman);
+
+        int result = gameState.checkForWinner();
+
+        System.out.println(result);
+
         // Print board for player
         gameState.printBoard();
     }

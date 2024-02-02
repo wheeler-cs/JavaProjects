@@ -3,7 +3,7 @@ import java.io.IOException;
 
 public class Player {
     String playerName = "";
-    char playerSymbol = ' ';
+    int playerValue = 0;
 
     public void setName(String newName) {
         this.playerName = newName;
@@ -13,12 +13,12 @@ public class Player {
         return this.playerName;
     }
 
-    public void setSymbol(char newSymbol) {
-        this.playerSymbol = newSymbol;
+    public void setValue(int newValue) {
+        this.playerValue = newValue;
     }
 
-    public char getSymbol() {
-        return this.playerSymbol;
+    public int getValue() {
+        return this.playerValue;
     }
 
     public int chooseCell() throws IOException {
