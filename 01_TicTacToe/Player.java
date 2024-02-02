@@ -24,6 +24,20 @@ public class Player {
     public int chooseCell() throws IOException {
         // Default behavior of just randomly choosing a cell
         Random rand = new Random();
-        return (rand.nextInt(8));
+        return (rand.nextInt(9));
+    }
+
+    public void intakeBoard(int[] gameVector) {
+        for(int i = 0; i < 9; i++) {
+            if(i % 3 == 0)
+                System.out.println();
+            if(gameVector[i] == -1)
+                System.out.println("O ");
+            else if(gameVector[i] == 1)
+                System.out.println("X ");
+            else
+                System.out.println("_ ");
+        }
+        System.out.println();
     }
 }

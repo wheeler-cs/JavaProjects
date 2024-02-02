@@ -1,16 +1,15 @@
 public class GameBoard {
     private int[] board = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int[] magic_square = {8, 3, 4, 1, 5, 9, 6, 7, 2};
-    int currentTurn = 0;
+    final private int[] magic_square = {8, 3, 4, 1, 5, 9, 6, 7, 2};
+    private int currentTurn = 0;
 
-    public void resetBoard() {
-        for(int i = 0; i < 9; i++)
-            this.board[i] = 0;
-        this.currentTurn = 0;
+    public int getCurrentTurn() {
+        return this.currentTurn;
     }
 
     public boolean setCell(int cellIndex, Player activePlayer) {
-        /* 0 1 2
+        /* Indices for board in a 2-D array instead of a vector
+         * 0 1 2
          * 3 4 5
          * 6 7 8
          */
@@ -27,6 +26,12 @@ public class GameBoard {
 
     public int getCell(int x, int y) {
         return(this.board[x + (y * 3)]);
+    }
+
+    public void resetBoard() {
+        for(int i = 0; i < 9; i++)
+            this.board[i] = 0;
+        this.currentTurn = 0;
     }
 
     public int checkForWinner() {
@@ -74,13 +79,18 @@ public class GameBoard {
               (this.magic_square[4] * this.board[4]) +
               (this.magic_square[6] * this.board[6]);
 
-        // Final check
         if(sum == 15)
             return 1;
         else if(sum == -15)
             return -1;
-        else
-            return 0;
+
+        // Check for draw state
+        for(int i = 0; i < 9; i++) {
+            if(this.board[i] == 0)
+                return 0;
+        }
+
+        return 99;
     }
 
     public void printBoard() {
@@ -94,6 +104,6 @@ public class GameBoard {
             else
                 System.out.print("_ ");
         }
-        System.out.println();
+        System.out.println('\n');
     }
 }
