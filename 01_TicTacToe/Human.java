@@ -14,7 +14,7 @@ public class Human extends Player {
         int x = 0, y = 0;
         while(!goodInput) {
             try {
-                System.out.print("Cell Selection\nx: ");
+                System.out.print("\nCell Selection\nx: ");
                 x = Integer.parseInt(this.consoleReader.readLine());
                 System.out.print("y: ");
                 y = Integer.parseInt(this.consoleReader.readLine());

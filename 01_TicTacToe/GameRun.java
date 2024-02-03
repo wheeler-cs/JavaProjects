@@ -11,14 +11,14 @@ public class GameRun {
         Player player1 = new Player();
         player1.setName("Player 1");
         player1.setValue(-1);
-        Player player2 = new Player();
-        player2.setName("Player 2");
+        Player player2 = new Human();
+        player2.setName("Human Player");
         player2.setValue(1);
 
         // Main game loop
         int winnerStateCode = 0;
         do {
-            System.out.print("Turn: ");
+            System.out.print("Turn " + (gameState.getCurrentTurn() + 1) + ", ");
             if(gameState.getCurrentTurn() % 2 == 0) {
                 System.out.print(player1.getName());
                 doPlayerTurn(gameState, player1);
@@ -31,10 +31,15 @@ public class GameRun {
             winnerStateCode = Math.abs(gameState.checkForWinner());
         } while((winnerStateCode == 0) && (winnerStateCode != 99));
 
-        if(winnerStateCode == 99) {
+        if(winnerStateCode == -1) {
+            System.out.println(player1.getName() + " wins!");
+        }
+        else if (winnerStateCode == 1) {
+            System.out.println(player2.getName() + " wins!");
+        }
+        else {
             System.out.println("\nGame ends in a stalemate!");
         }
-
     }
 
     public static void doPlayerTurn(GameBoard gameState, Player activePlayer) {

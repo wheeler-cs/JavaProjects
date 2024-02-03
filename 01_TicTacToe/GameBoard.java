@@ -98,9 +98,9 @@ public class GameBoard {
             if(i % 3 == 0)
                 System.out.println();
             if(this.board[i] == -1)
-                System.out.print("O ");
-            else if(this.board[i] == 1)
                 System.out.print("X ");
+            else if(this.board[i] == 1)
+                System.out.print("O ");
             else
                 System.out.print("_ ");
         }
