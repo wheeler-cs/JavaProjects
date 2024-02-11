@@ -24,6 +24,21 @@ public class GameBoard {
         return true;
     }
 
+    public boolean setCell(int cellIndex, int playerValue) {
+        if(this.board[cellIndex] == 0) {
+            this.board[cellIndex] = playerValue;
+            ++this.currentTurn;
+        }
+        else
+            return false;
+
+        return true;
+    }
+
+    public int getCell(int index) {
+        return(this.board[index]);
+    }
+
     public int getCell(int x, int y) {
         return(this.board[x + (y * 3)]);
     }
@@ -32,6 +47,14 @@ public class GameBoard {
         for(int i = 0; i < 9; i++)
             this.board[i] = 0;
         this.currentTurn = 0;
+    }
+
+    public int[] getBoard() {
+        return this.board;
+    }
+
+    public void copyBoard(int[] gameVector) {
+        this.board = gameVector.clone();
     }
 
     public int checkForWinner() {

@@ -8,9 +8,10 @@ public class GameRun {
         gameState.resetBoard();
 
         // Create two new players for game
-        Player player1 = new Player();
-        player1.setName("Player 1");
+        Player player1 = new AI();
+        player1.setName("CPU");
         player1.setValue(-1);
+        player1.setOpponent(1);
         Player player2 = new Human();
         player2.setName("Human Player");
         player2.setValue(1);
@@ -20,11 +21,9 @@ public class GameRun {
         do {
             System.out.print("Turn " + (gameState.getCurrentTurn() + 1) + ", ");
             if(gameState.getCurrentTurn() % 2 == 0) {
-                System.out.print(player1.getName());
                 doPlayerTurn(gameState, player1);
             }
             else {
-                System.out.print(player2.getName());
                 doPlayerTurn(gameState, player2);
             }
             gameState.printBoard();
@@ -47,6 +46,7 @@ public class GameRun {
             boolean goodInputFlag = false;
             int cellSelection = 0;
             while(goodInputFlag == false) {
+                activePlayer.intakeBoard(gameState);
                 cellSelection = activePlayer.chooseCell();
                 goodInputFlag = gameState.setCell(cellSelection, activePlayer);
             }
